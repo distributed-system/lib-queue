@@ -10,7 +10,8 @@ import amqp from 'amqplib'
  * 
  * @returns {Promise.<{connection: amqp.Connection, channel: amqp.Channel}>} - Connection and channel to send messanges. 
  */
-declare async function openQueueConnection(endpoint:string, queueName:string);
+declare function openQueueConnection(endpoint:string, queueName:string) 
+  : Promise<{connection: amqp.Connection, channel: amqp.Channel}>;
 
 /**
  * Send a specific message to a queue. 
@@ -24,7 +25,8 @@ declare async function openQueueConnection(endpoint:string, queueName:string);
  * 
  * @returns {boolean} - The result.
  */
-declare async function sendMessage(message:string, queueName:string, channel:amqp.Channel, options:amqp.Options.Publish);
+declare function sendMessage(message:string|Uint8Array, queueName:string, channel:amqp.Channel, options:amqp.Options.Publish) 
+  : Promise<boolean>;
 
 /**
  * Consume messages.
@@ -35,4 +37,5 @@ declare async function sendMessage(message:string, queueName:string, channel:amq
  * 
  * @example await consumeMessage(channel, 'my-queue-name', msg => console.log(msg))
  */
-declare async function consumeMessage(channel:amqp.Channel, queueName:string, fnConsume:Function);
+declare function consumeMessage(channel:amqp.Channel, queueName:string, fnConsume:Function) 
+  : Promise<void>;
