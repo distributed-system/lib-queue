@@ -10,6 +10,13 @@
       "problemMatcher": [
         "$eslint-stylish"
       ]
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": [
+        "$eslint-stylish"
+      ]
     }
   ]
 }

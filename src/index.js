@@ -35,9 +35,13 @@ export async function openQueueConnection(endpoint, queueName) {
  * @returns {boolean} - The result.
  */
 export async function sendMessage(message, queueName, channel, options) {
+  const bufferedMessage = Buffer.isBuffer(message) 
+    ? message
+    : Buffer.from(message)
+
   return await channel.sendToQueue(
     queueName, 
-    Buffer.from(message), 
+    bufferedMessage, 
     options
   )
 }
